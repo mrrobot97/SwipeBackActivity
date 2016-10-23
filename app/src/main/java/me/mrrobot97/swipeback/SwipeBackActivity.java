@@ -14,6 +14,9 @@ public class SwipeBackActivity extends AppCompatActivity {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(mTouchHelepr==null)
             mTouchHelepr=new TouchHelepr(getWindow());
-        return super.dispatchTouchEvent(ev)||mTouchHelepr.processTouchEvent(ev);
+        boolean consume=mTouchHelepr.processTouchEvent(ev);
+        if(!consume) return super.dispatchTouchEvent(ev);
+        return false;
+        //return super.dispatchTouchEvent(ev)||mTouchHelepr.processTouchEvent(ev);
     }
 }
